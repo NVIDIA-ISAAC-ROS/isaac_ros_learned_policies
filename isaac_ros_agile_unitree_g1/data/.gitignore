@@ -1,0 +1,2 @@
+# ONNX model is downloaded at build time via CMakeLists.txt — do not commit.
+*.onnx
