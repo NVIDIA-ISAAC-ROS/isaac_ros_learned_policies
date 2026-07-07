@@ -1,0 +1,74 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+models:
+  policy:
+    inputs:
+    - name: joint_pos
+      dtype: float32
+      shape: [1, 7]
+      type: tensor
+      kind: state/joint/position
+      element_names: [[fr3_joint1, fr3_joint2, fr3_joint3, fr3_joint4, fr3_joint5,
+          fr3_joint6, fr3_joint7]]
+    - name: joint_vel
+      dtype: float32
+      shape: [1, 7]
+      type: tensor
+      kind: state/joint/velocity
+      element_names: [[fr3_joint1, fr3_joint2, fr3_joint3, fr3_joint4, fr3_joint5,
+          fr3_joint6, fr3_joint7]]
+    - name: target_pos
+      dtype: float32
+      shape: [1, 3]
+      type: tensor
+      kind: command/body/target_position
+      element_names: [[x, y, z]]
+    - name: target_rot
+      dtype: float32
+      shape: [1, 4]
+      type: tensor
+      kind: command/body/target_rotation
+      element_names: [[w, x, y, z]]
+    outputs:
+    - name: joint_targets
+      dtype: float32
+      shape: [1, 7]
+      type: tensor
+      kind: target/joint/position
+      element_names: [[fr3_joint1, fr3_joint2, fr3_joint3, fr3_joint4, fr3_joint5,
+          fr3_joint6, fr3_joint7]]
+    - name: joint_targets_kp_gains
+      dtype: float32
+      shape: [1, 7]
+      type: tensor
+      kind: kp
+      element_names: [[fr3_joint1, fr3_joint2, fr3_joint3, fr3_joint4, fr3_joint5,
+          fr3_joint6, fr3_joint7]]
+    - name: joint_targets_kd_gains
+      dtype: float32
+      shape: [1, 7]
+      type: tensor
+      kind: kd
+      element_names: [[fr3_joint1, fr3_joint2, fr3_joint3, fr3_joint4, fr3_joint5,
+          fr3_joint6, fr3_joint7]]
+    parameters:
+      model_path: policy.onnx
+      md5sum: 97b6d2988adb2db35f559641b8a2a3f8
+      sha256sum: a61b9e1e553a6bbf9afb0b21131cc06027932e9222816a8665d93b0a9ace6cfa
+      device: cuda
+      backend: triton
+
+pipeline:
+  data_flow: {}
+  feedback_flow: {}
+  inputs:
+    policy: [joint_pos, joint_vel, target_pos, target_rot]
+  outputs:
+    policy: [joint_targets, joint_targets_kp_gains, joint_targets_kd_gains]
+
+system information:
+  cuda version: '12.8'
+  leapp version: 0.3.0
+  os: Linux
+  python version: 3.11.14
+  torch version: 2.7.0+cu128

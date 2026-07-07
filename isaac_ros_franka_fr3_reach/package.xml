@@ -19,9 +19,9 @@ limitations under the License.
 
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>isaac_ros_agile_unitree_g1</name>
+  <name>isaac_ros_franka_fr3_reach</name>
   <version>4.5.0</version>
-  <description>Agile policy data for Unitree G1 robot</description>
+  <description>Franka FR3 reach policy data</description>
   <maintainer email="isaac-ros-maintainers@nvidia.com">Isaac ROS Maintainers</maintainer>
   <license>Apache-2.0</license>
 
