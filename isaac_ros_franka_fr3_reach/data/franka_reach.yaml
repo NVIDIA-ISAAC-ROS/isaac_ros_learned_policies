@@ -55,8 +55,7 @@ models:
       model_path: policy.onnx
       md5sum: 97b6d2988adb2db35f559641b8a2a3f8
       sha256sum: a61b9e1e553a6bbf9afb0b21131cc06027932e9222816a8665d93b0a9ace6cfa
-      device: cuda
-      backend: triton
+      backend: onnx
 
 pipeline:
   data_flow: {}
